@@ -1,25 +1,18 @@
-.PHONY: all clean
+.PHONY: test clean
 
-CXX = g++
+CXX = g++ -std=c++17
 
+CXXFLAGS = -Wall -lboost_program_options -lcrypto++ -lUnitTest++
 
-CXXFLAGS = -Wall 
+TARGET = Utest
 
-
-TARGET = modAlphaCipher
-
-
-SOURCES = main.cpp modAlphaCipher.cpp
-
+SOURCES = test.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
+DEPS = includer.h
 
-DEPS = modAlphaCipher.h
-
-
-all: $(TARGET)
-
+test: $(TARGET) 
 $(TARGET): $(OBJECTS)
 	$(CXX) $(OBJECTS) $(CXXFLAGS) -o $(TARGET) 
 
