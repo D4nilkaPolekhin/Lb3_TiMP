@@ -1,21 +1,30 @@
-.PHONY: all clean test format
+.PHONY: all clean
 
-CXX=g++
-OFLAGS=-O2 -Wall -DNDEBUG
-LDFLAGS=-lUnitTest++ 
-
-SOURCES=table.cpp test.cpp
-HEADERS=table.h
-EXECUTABLE=Cipher-test
+CXX = g++
 
 
-$(EXECUTABLE): $(SOURCES)
-	$(CXX)  $(SOURCES)  -o $(EXECUTABLE) $(OFLAGS) $(LDFLAGS)
+CXXFLAGS = -Wall -lboost_program_options
 
-test: $(EXECUTABLE)
-	./$(EXECUTABLE) 
 
-format:
-	astyle $(SOURCES) $(HEADERS)
+TARGET = table_cipher
+
+
+SOURCES = main.cpp table_cipher.cpp
+
+
+OBJECTS = $(SOURCES:.cpp=.o)
+
+
+DEPS = table_cipher.h
+
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) $(CXXFLAGS) -o $(TARGET) 
+
+%.o: %.cpp $(DEPS)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(EXECUTABLE) *.orig
+	rm -f $(OBJECTS) $(TARGET)
