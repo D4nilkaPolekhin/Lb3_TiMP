@@ -1,6 +1,6 @@
 #pragma once
-#include "modAlpha/modAlphaCipher.h"
-#include "modAlpha/modAlphaCipher.cpp"
-#include "table.cipher/table_cipher.h"
-#include "table.cipher/table_cipher.cpp"
+#include "Task_1/modAlphaCipher.h"
+#include "Task_1/modAlphaCipher.cpp"
+#include "Task_2/table_cipher.h"
+#include "Task_2/table_cipher.cpp"
 #include <locale>
